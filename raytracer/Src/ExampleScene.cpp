@@ -606,7 +606,7 @@ void ExampleScene::initializeCustomScene()
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/ObjMesh.png");
+    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/custom_scene.png");
     rtBounceDepth(10);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
@@ -619,19 +619,19 @@ void ExampleScene::initializeCustomScene()
     Material mat(STColor3f(.5f,.5f,.5f),STColor3f(.5f,.5f,.5f),STColor3f(),STColor3f(),10.f);
     rtMaterial(mat);
     rtPushMatrix();
-    rtTranslate(10.f,3.5f,8.f);
+    rtTranslate(7.f,3.5f,8.f);
     rtRotate(-90.f,0.f,0.f);
     rtScale(.1f,.1f,.1f);
-    rtTriangleMesh("../Custom_Tests/totoro.obj",true,false);
+    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
     rtPopMatrix();
     
     Material mat3(STColor3f(.6f,.8f,.9f),STColor3f(.6f,.8f,.9f),STColor3f(),STColor3f(),10.f);
     rtMaterial(mat3);
     rtPushMatrix();
     rtTranslate(13.f,1.5f,10.f);
-    rtRotate(-90.f,0.f,0.f);
-    rtScale(.04f,.04f,.04f);
-    rtTriangleMesh("../Custom_Tests/totoro.obj",true,false);
+    rtRotate(-90.f,15.f,0.f);
+//    rtScale(.04f,.04f,.04f);
+    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
     rtPopMatrix();
     
     ////environment box
