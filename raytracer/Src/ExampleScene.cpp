@@ -606,7 +606,7 @@ void ExampleScene::initializeCustomScene()
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/custom_scene.png");
+    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment4Final.png");
     rtBounceDepth(10);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
@@ -615,24 +615,37 @@ void ExampleScene::initializeCustomScene()
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(15.f,10.f,15.f),STColor3f(.8f,.8f,.8f));
     rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
+    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
     
-    Material mat(STColor3f(.5f,.5f,.5f),STColor3f(.5f,.5f,.5f),STColor3f(),STColor3f(),10.f);
-    rtMaterial(mat);
+    ////Dice
+    Material mat_glass(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
+    rtMaterial(mat_glass);
     rtPushMatrix();
     rtTranslate(7.f,3.5f,8.f);
     rtRotate(-90.f,0.f,0.f);
-    rtScale(.1f,.1f,.1f);
+    rtScale(.05f,.05f,.05f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
     rtPopMatrix();
     
-    Material mat3(STColor3f(.6f,.8f,.9f),STColor3f(.6f,.8f,.9f),STColor3f(),STColor3f(),10.f);
-    rtMaterial(mat3);
+    rtMaterial(mat_glass);
+    rtPushMatrix();
+    rtTranslate(7.f,1.5f,8.f);
+    rtRotate(-90.f,05.f,0.f);
+    rtScale(.05f,.05f,.05f);
+    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
+    rtPopMatrix();
+    
+    ////Pokeball
+    Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.3f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
+    rtMaterial(mat_metal);
     rtPushMatrix();
     rtTranslate(13.f,1.5f,10.f);
     rtRotate(-90.f,15.f,0.f);
-//    rtScale(.04f,.04f,.04f);
+    rtScale(.5f,.5f,.5f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
     rtPopMatrix();
+    
     
     ////environment box
     Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);

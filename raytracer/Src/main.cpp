@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
 
     ////set rendering scene from script files
     //scene->initializeSceneFromScript("../Standard_Tests/RecursiveTest.txt");
-    //scene->initializeSceneFromScript("../Standard_Tests/CornellBox.txt");
+    //scene->initializeSdceneFromScript("../Standard_Tests/CornellBox.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/DoF.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Glass.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Go.txt");
