@@ -13,14 +13,15 @@ int main(int argc, const char * argv[])
 
     ////or set rendering scene from code
     ////scenes for assignment 4
-    scene->initializeSceneBasicGeometry();
-    //scene->initializeSceneBasicLightingAndShading();
-    //scene->initializeSceneTransform();
-    //scene->initializeSceneObjMesh();
-    //scene->initializeSceneObjMesh2();
-    //scene->initializeSceneTexture();
-    //scene->initializeSceneTransparentObject();
-    //scene->initializeSceneTransparentObject2();
+//    scene->initializeSceneBasicGeometry();
+//    scene->initializeSceneBasicLightingAndShading();
+//    scene->initializeSceneTransform();
+//    scene->initializeSceneObjMesh();
+//    scene->initializeSceneObjMesh2();
+//    scene->initializeSceneTexture();
+//    scene->initializeSceneTransparentObject();
+//    scene->initializeSceneTransparentObject2();
+    scene->initializeCustomScene();
 
     ////scenes for assignment 5
     //scene->initializeSceneAccelerationStructureGrid();

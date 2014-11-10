@@ -22,6 +22,8 @@ public:
 	void initializeSceneTexture();
     void initializeSceneTransparentObject();
 	void initializeSceneTransparentObject2();
+
+    void initializeCustomScene(); // our own custom scene for assignment 4
     
     ////example scenes for assignment 5: acceleration structures
     void initializeSceneAccelerationStructureGrid();   ////uniform distributed
