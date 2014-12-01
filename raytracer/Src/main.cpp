@@ -24,8 +24,8 @@ int main(int argc, const char * argv[])
     scene->initializeCustomScene();
 
     ////scenes for assignment 5
-    //scene->initializeSceneAccelerationStructureGrid();
-    //scene->initializeSceneAccelerationStructureBVH();
+//    scene->initializeSceneAccelerationStructureGrid();
+//    scene->initializeSceneAccelerationStructureBVH();
 
     ////scenes for assignment 6
     //scene->initializeSceneDepthOfField();
@@ -37,12 +37,13 @@ int main(int argc, const char * argv[])
     //scene->initializeSceneFromScript("../Standard_Tests/DoF.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Glass.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Go.txt");
-    //scene->initializeSceneFromScript("../Standard_Tests/Bowl.txt");
-    //scene->rtSampleRate(4);
+//    scene->initializeSceneFromScript("../Standard_Tests/Bowl.txt");
+//    scene->rtSampleRate(4);
 
     ////initialize acceleration structures
-    //scene->buildAccelStructures(std::string("aabb"));
-    //scene->buildAccelStructures(std::string("grid"));
+
+//    scene->buildAccelStructures(std::string("aabb"));
+//    scene->buildAccelStructures(std::string("grid"));
 
     clock_t start, end;
     start=clock();
