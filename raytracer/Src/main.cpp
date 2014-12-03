@@ -37,8 +37,8 @@ int main(int argc, const char * argv[])
     //scene->initializeSceneFromScript("../Standard_Tests/DoF.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Glass.txt");
     //scene->initializeSceneFromScript("../Standard_Tests/Go.txt");
-    //scene->initializeSceneFromScript("../Standard_Tests/Bowl.txt");
-    //scene->rtSampleRate(4);
+//    scene->initializeSceneFromScript("../Standard_Tests/Bowl.txt");
+//    scene->rtSampleRate(4);
 
     ////initialize acceleration structures
 //    scene->buildAccelStructures(std::string("aabb"));
