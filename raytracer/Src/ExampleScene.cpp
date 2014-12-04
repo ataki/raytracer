@@ -638,9 +638,9 @@ void ExampleScene::initializeFinalScene()
 
     //electric green pokeball
     rtPushMatrix();
-    rtTranslate(7.f,1.5f,9.f);
-    rtRotate(-60.f,15.f,0.f);
-    //    rtScale(.5f,.5f,.5f);
+    rtTranslate(7.5f,1.5f,12.f);
+    rtRotate(15.f,15.f,0.f);
+    rtScale(1.1f,1.1f,1.1f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball5.obj",true,false);
     rtPopMatrix();
 
@@ -654,7 +654,7 @@ void ExampleScene::initializeFinalScene()
 //    rtBindTexture(tex_id);
 
     rtPushMatrix();
-    rtTranslate(13.f,2.5f,10.f);
+    rtTranslate(13.f,2.5f,10.5f);
     rtRotate(50.f,35.f,0.f);
 //    rtRotate(-90.f,5.f,0.f);
 //    rtScale(.5f,.5f,.5f);
