@@ -120,19 +120,20 @@ void ExampleScene::initializeSceneAccelerationStructureGrid()
     rtBounceDepth(1);
     //rtUseShadow(false);
     rtShadowBias(1e-4f);
-	//rtSampleRate(4);
+//	rtSampleRate(4);
 
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(0.f,0.f,10.f),STColor3f(1.f,1.f,1.f));
 
     ////objects
-    int counts[3]={20,20,1};
+    int counts[3]={10,10,1};
     float size[3]={40.f,40.f,4.f};
     STPoint3 min_corner(-size[0]*.5f,-size[1]*.5f,-size[2]*.5f);
     STPoint3 max_corner(size[0]*.5f,size[1]*.5f,size[2]*.5f);
     STVector3 dx(size[0]/(float)counts[0],size[1]/(float)counts[1],size[2]/(float)counts[2]);
 
+    int num_objs = 0;
     ////spheres and cubes
     for(int i=0;i<counts[0];i++){
         for(int j=0;j<counts[1];j++){
@@ -143,25 +144,25 @@ void ExampleScene::initializeSceneAccelerationStructureGrid()
                 STPoint3 center=min_corner+STVector3(dx.Component(0)*(float)(i+.5f+(perturb.Component(0)-.5f)*.2f),dx.Component(1)*(float)(j+.5f+(perturb.Component(1)-.5f)*.2f),dx.Component(2)*(float)(k+.5f+(perturb.Component(2)-.5f)*.2f));
                 rtMaterial(mat);
                 int mode=rand()%2;
-                switch(mode){
-                case 0:rtSphere(center,.75f);break;
-                case 1:rtBox(center,STVector3(1.5f));break;
-                }
+                num_objs++;
+                rtSphere(center,.75f);break;
+
             }
         }
     }
+    printf("NUM OBJ: %d\n", num_objs);
 
 	//background
-//	STColor3f background_color(.0f,.2f,.8f);
-//	Material background_mat(background_color,background_color,STColor3f(.2f,.2f,.2f),STColor3f(),40.f);
-//	rtMaterial(background_mat);
-//	addBackgroundWall(/*min_corner*/STPoint3(-size[0]*.6f,-size[1]*.6f,-2.f),/*size*/STVector2(size[0]*1.2f,size[1]*1.2f));
+	STColor3f background_color(.75f,.7f,.7f);
+	Material background_mat(background_color,background_color,STColor3f(.2f,.2f,.2f),STColor3f(),40.f);
+	rtMaterial(background_mat);
+	addBackgroundWall(/*min_corner*/STPoint3(-size[0]*.6f,-size[1]*.6f,-2.f),/*size*/STVector2(size[0]*1.2f,size[1]*1.2f));
 
     ////use acceleration structure
     //////aabb tree
-//    accel_structure=AABB_TREE;
-//    AABBTree* aabb_tree=new AABBTree(objects);
-//    aabb_trees.push_back(aabb_tree);
+    accel_structure=AABB_TREE;
+    AABBTree* aabb_tree=new AABBTree(objects);
+    aabb_trees.push_back(aabb_tree);
 
     //////uniform grid
 //    accel_structure=UNIFORM_GRID;
@@ -192,7 +193,7 @@ void ExampleScene::initializeSceneAccelerationStructureBVH()
 	centers.push_back(STPoint3(10.f,5.f,0.f));
 	centers.push_back(STPoint3(0.f,-5.f,0.f));
 
-	int counts[3]={10,10,10};
+	int counts[3]={10,10,1};
 	float size[3]={10.f,10.f,10.f};
 
 	for(int i=0;i<(int)centers.size();i++){
@@ -210,10 +211,11 @@ void ExampleScene::initializeSceneAccelerationStructureBVH()
 					STColor3f color((float)rand()/RAND_MAX,(float)rand()/RAND_MAX,(float)rand()/RAND_MAX);
 					Material mat(color,color,STColor3f(),STColor3f(),40.f);
 					rtMaterial(mat);
-					int mode=rand()%2;
+					int mode=rand()%3;
 					switch(mode){
-					case 0:rtSphere(pos,.3f);break;
-					case 1:rtBox(pos,STVector3(.6f));break;
+                        case 0:rtSphere(pos,.3f);break;
+                        case 1:rtBox(pos,STVector3(.6f));break;
+                        case 2:rtCylinder(center, center+3, 0.5f);break;
 					}
 				}
 			}
@@ -221,22 +223,22 @@ void ExampleScene::initializeSceneAccelerationStructureBVH()
 	}
 
 	////background
-	STColor3f background_color(.0f,.2f,.8f);
+	STColor3f background_color(.6f,.1f,.0f);
 	Material background_mat(background_color,background_color,STColor3f(.2f,.2f,.2f),STColor3f(),40.f);
 	rtMaterial(background_mat);
 	addBackgroundWall(/*min_corner*/STPoint3(-25.f,-25.f,-8.f),/*size*/STVector2(50.f,50.f));
 
 	////use acceleration structure
 	////aabb tree
-	accel_structure=AABB_TREE;
-	AABBTree* aabb_tree=new AABBTree(objects);
-	aabb_trees.push_back(aabb_tree);
+//	accel_structure=AABB_TREE;
+//	AABBTree* aabb_tree=new AABBTree(objects);
+//	aabb_trees.push_back(aabb_tree);
 
 	////////uniform grid
-	//accel_structure=UNIFORM_GRID;
-	//AABB scene_bounding_box;getObjectsAABB(objects,scene_bounding_box);
-	//int subdivision[3]={20,20,1};
-	//uniform_grid=new UniformGrid(objects,scene_bounding_box,subdivision);
+	accel_structure=UNIFORM_GRID;
+	AABB scene_bounding_box;getObjectsAABB(objects,scene_bounding_box);
+	int subdivision[3]={10,10,1};
+	uniform_grid=new UniformGrid(objects,scene_bounding_box,subdivision);
 }
 
 void ExampleScene::initializeSceneTransparentObject()
@@ -549,8 +551,13 @@ void ExampleScene::initializeSceneParticipatingMedia()
 	addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
 
     ////smoke participating medium
+<<<<<<< HEAD
     Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
     VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
+=======
+    Material participating_medium(STColor3f(1.f,1.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
+    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
+>>>>>>> de08810b578aa1f41d56415b996d46691963512f
     rtVolumetricTexture(volume_tex);
     participating_medium.volumetric_texture=volume_tex;
     rtMaterial(participating_medium);
@@ -599,15 +606,14 @@ void ExampleScene::addWall(const STPoint3& min_corner,const STVector3& u,const S
 
 /* -------------------------- Rendering Code for Assignment 6 / Final ----------------------- */
 
-
 void ExampleScene::initializeFinalScene()
 {
     rtClear();
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final1.png");
-    rtBounceDepth(3);
+    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final.png");
+    rtBounceDepth(10);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
     
@@ -618,29 +624,30 @@ void ExampleScene::initializeFinalScene()
     rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
     rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
     
-    ////Dice
+    ////die left
     Material mat_glass(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
     rtMaterial(mat_glass);
     rtPushMatrix();
-    rtTranslate(7.f,3.5f,5.f);
-    rtRotate(-90.f,0.f,0.f);
+    rtTranslate(7.f,3.5f,11.f);
+    rtRotate(-40.f,70.f,0.f);
     rtScale(.05f,.05f,.05f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
     rtPopMatrix();
     
+    ////die right
     rtMaterial(mat_glass);
     rtPushMatrix();
-    rtTranslate(7.f,1.5f,6.f);
+    rtTranslate(9.f,1.5f,11.f);
     rtRotate(-90.f,05.f,0.f);
     rtScale(.05f,.05f,.05f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
     rtPopMatrix();
     
-    ////Pokeball
+    ////pokeball
     Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.3f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
     rtMaterial(mat_metal);
     rtPushMatrix();
-    rtTranslate(10.f,1.5f,10.f);
+    rtTranslate(13.f,1.5f,8.f);
     rtRotate(-90.f,15.f,0.f);
     rtScale(.5f,.5f,.5f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
@@ -659,21 +666,14 @@ void ExampleScene::initializeFinalScene()
     addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
     ////background wall
     addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
-    //////forward wall
-    //addBackgroundWall(STPoint3(0.f,0.f,20.f),STVector2(20.f,20.f),false);
+    ////forward wall
+    addBackgroundWall(STPoint3(0.f,0.f,30.f),STVector2(20.f,20.f),false);
     ////left wall
     addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
     ////right wall
     addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
     
-    rtSetApeture(20.f);
-    rtSetFocus(STPoint3(10.f,1.5f,10.f));
-    
-    
-    ////use acceleration structure
-    //////aabb tree
-    //    accel_structure=AABB_TREE;
-    //    AABBTree* aabb_tree=new AABBTree(objects);
-    //    aabb_trees.push_back(aabb_tree);
+    ////ceiling
+    addBackgroundWall(STPoint3(0.f,20.f,0.f),STVector2(20.f,20.f),false);
 
 }

@@ -10,9 +10,6 @@ using namespace std;
 int main(int argc, const char * argv[])
 {
     ExampleScene *scene = new ExampleScene();
-
-    ////or set rendering scene from code
-    ////scenes for assignment 4
     scene->initializeCustomScene();
 
     clock_t start, end;
