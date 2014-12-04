@@ -27,7 +27,7 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Justin/Desktop/cs148/raytracer/raytracer/Custom_Tests/obj_files/pokeball/colors/pearl.jpg
+map_Kd ../pokeball/colors/green abstract.jpg
 
 newmtl Material.001_blue_abstract.jpg
 Ns 96.078431
@@ -37,4 +37,4 @@ Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd /Users/Justin/Desktop/cs148/raytracer/raytracer/Custom_Tests/obj_files/pokeball/colors/blue abstract.jpg
+map_Kd ../pokeball/colors/green abstract.jpg

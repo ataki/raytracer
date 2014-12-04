@@ -611,7 +611,7 @@ void ExampleScene::initializeFinalScene()
     rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
     rtBounceDepth(10);
     rtShadowBias(1e-4f);
-    rtSampleRate(1 );
+    rtSampleRate(1);
     
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
@@ -630,7 +630,7 @@ void ExampleScene::initializeFinalScene()
     rtBindTexture(tex_id);
 
     rtPushMatrix();
-    rtTranslate(10.f,5.5f,8.f);
+    rtTranslate(9.3f,5.5f,8.f);
     rtRotate(-90.f,5.f,0.f);
     rtScale(.45f,.45f,.45f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
@@ -639,9 +639,9 @@ void ExampleScene::initializeFinalScene()
     //electric green pokeball
     rtPushMatrix();
     rtTranslate(7.f,1.5f,9.f);
-    rtRotate(50.f,15.f,0.f);
+    rtRotate(-60.f,15.f,0.f);
     //    rtScale(.5f,.5f,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball3.obj",true,false);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball5.obj",true,false);
     rtPopMatrix();
 
     //red pokeball
