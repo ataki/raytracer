@@ -10,7 +10,7 @@ using namespace std;
 int main(int argc, const char * argv[])
 {
     ExampleScene *scene = new ExampleScene();
-    scene->initializeCustomScene();
+    scene->initializeFinalScene();
 
     clock_t start, end;
     start=clock();

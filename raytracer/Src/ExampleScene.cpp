@@ -608,68 +608,94 @@ void ExampleScene::initializeFinalScene()
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final.png");
+    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
     rtBounceDepth(10);
     rtShadowBias(1e-4f);
-    rtSampleRate(2);
+    rtSampleRate(1 );
     
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(15.f,10.f,15.f),STColor3f(.8f,.8f,.8f));
-    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+//    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
     rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
-    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
-    
-    ////die left
-    Material mat_glass(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
-    rtMaterial(mat_glass);
+//    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
+
+    //shiny center pokeball
+//    Material mat_glass(/*ambient*/STColor3f(0.f,0.f,0.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/50.f);
+//    rtMaterial(mat_glass);
+
+    int tex_id;rtLoadTexture("../Standard_Tests/purple.png",tex_id);
+    Material mat_tri(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.2f,.6f,.6f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/40.f);
+    rtMaterial(mat_tri);
+    rtBindTexture(tex_id);
+
     rtPushMatrix();
-    rtTranslate(7.f,3.5f,11.f);
-    rtRotate(-40.f,70.f,0.f);
-    rtScale(.05f,.05f,.05f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
-    rtPopMatrix();
-    
-    ////die right
-    rtMaterial(mat_glass);
-    rtPushMatrix();
-    rtTranslate(9.f,1.5f,11.f);
-    rtRotate(-90.f,05.f,0.f);
-    rtScale(.05f,.05f,.05f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
-    rtPopMatrix();
-    
-    ////pokeball
-    Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.3f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
-    rtMaterial(mat_metal);
-    rtPushMatrix();
-    rtTranslate(13.f,1.5f,8.f);
-    rtRotate(-90.f,15.f,0.f);
-    rtScale(.5f,.5f,.5f);
+    rtTranslate(10.f,5.5f,8.f);
+    rtRotate(-90.f,5.f,0.f);
+    rtScale(.45f,.45f,.45f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
     rtPopMatrix();
+
+    //electric green pokeball
+    rtPushMatrix();
+    rtTranslate(7.f,1.5f,9.f);
+    rtRotate(50.f,15.f,0.f);
+    //    rtScale(.5f,.5f,.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball3.obj",true,false);
+    rtPopMatrix();
+
+    //red pokeball
+//    int tex_id;rtLoadTexture("../Standard_Tests/purple.png",tex_id);
+//    Material mat_metal(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,0.f,0.f),/*spec*/STColor3f(1.f,0.f,0.f),/*mirror*/STColor3f(1.f,0.f,0.f),/*shiness*/100.f);
+//    rtMaterial(mat_metal);
+
+//    Material mat_tri(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.2f,.6f,.6f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/40.f);
+//    rtMaterial(mat_tri);
+//    rtBindTexture(tex_id);
+
+    rtPushMatrix();
+    rtTranslate(13.f,2.5f,10.f);
+    rtRotate(50.f,35.f,0.f);
+//    rtRotate(-90.f,5.f,0.f);
+//    rtScale(.5f,.5f,.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball4.obj",true,false);
+    rtPopMatrix();
     
+    //snow
+//    Material mat_metal(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(1.f,.5f,0.6f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/80.f);
+//    rtMaterial(mat_metal);
+//    rtPushMatrix();
+////    rtTranslate(13.f,1.5f,8.f);
+////    rtRotate(-90.f,15.f,0.f);
+//    rtScale(.8f,.8f,.8f);
+//    rtTriangleMesh("../Custom_Tests/obj_files/snow.obj",true,false);
+//    rtPopMatrix();
     
-    ////environment box
+    //environment box
     Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);
     rtMaterial(mat_ground);
-    ////ground
+    //ground
     addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
     
-    Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
-    rtMaterial(mat_wall);
-    ////ceil
-    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
-    ////background wall
-    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
-    ////forward wall
-    addBackgroundWall(STPoint3(0.f,0.f,30.f),STVector2(20.f,20.f),false);
-    ////left wall
-    addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
-    ////right wall
-    addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
     
-    ////ceiling
-    addBackgroundWall(STPoint3(0.f,20.f,0.f),STVector2(20.f,20.f),false);
+    
+//    Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
+//    rtMaterial(mat_wall);
+//    ////ceil
+//    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
+    
+    //background wall
+    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+    
+    ////forward wall
+    
+//    addBackgroundWall(STPoint3(0.f,0.f,30.f),STVector2(20.f,20.f),false);
+//    ////left wall
+//    addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
+//    ////right wall
+//    addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
+//    
+//    ////ceiling
+//    addBackgroundWall(STPoint3(0.f,20.f,0.f),STVector2(20.f,20.f),false);
 
 }
