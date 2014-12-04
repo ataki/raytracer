@@ -497,7 +497,7 @@ void ExampleScene::initializeSceneDepthOfField()
 	rtSphere(STPoint3(.2f,-.5f,1.f),.5f);
 	
 	////set focus on sphere 3
-	rtSetApeture(20.f);
+	rtSetApeture(2.f);
 	rtSetFocus(STPoint3(.2f, -.5f, 1.f));
 }
 
@@ -549,7 +549,7 @@ void ExampleScene::initializeSceneParticipatingMedia()
 	addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
 
     ////smoke participating medium
-    Material participating_medium(STColor3f(1.f,1.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
+    Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
     VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
     rtVolumetricTexture(volume_tex);
     participating_medium.volumetric_texture=volume_tex;
@@ -597,16 +597,16 @@ void ExampleScene::addWall(const STPoint3& min_corner,const STVector3& u,const S
 	}
 }
 
-/* -------------------------- Rendering Code for Assignment 4 ----------------------- */
+/* -------------------------- Rendering Code for Assignment 6 / Final ----------------------- */
 
 
-void ExampleScene::initializeCustomScene()
+void ExampleScene::initializeFinalScene()
 {
     rtClear();
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final.png");
+    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final1.png");
     rtBounceDepth(3);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
@@ -622,7 +622,7 @@ void ExampleScene::initializeCustomScene()
     Material mat_glass(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
     rtMaterial(mat_glass);
     rtPushMatrix();
-    rtTranslate(7.f,3.5f,8.f);
+    rtTranslate(7.f,3.5f,5.f);
     rtRotate(-90.f,0.f,0.f);
     rtScale(.05f,.05f,.05f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
@@ -630,7 +630,7 @@ void ExampleScene::initializeCustomScene()
     
     rtMaterial(mat_glass);
     rtPushMatrix();
-    rtTranslate(7.f,1.5f,8.f);
+    rtTranslate(7.f,1.5f,6.f);
     rtRotate(-90.f,05.f,0.f);
     rtScale(.05f,.05f,.05f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
@@ -640,7 +640,7 @@ void ExampleScene::initializeCustomScene()
     Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.3f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
     rtMaterial(mat_metal);
     rtPushMatrix();
-    rtTranslate(13.f,1.5f,10.f);
+    rtTranslate(10.f,1.5f,10.f);
     rtRotate(-90.f,15.f,0.f);
     rtScale(.5f,.5f,.5f);
     rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
@@ -666,84 +666,14 @@ void ExampleScene::initializeCustomScene()
     ////right wall
     addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
     
-//    rtSetApeture(20.f);
-//    rtSetFocus(STPoint3(13.f,1.5f,10.f));
+    rtSetApeture(20.f);
+    rtSetFocus(STPoint3(10.f,1.5f,10.f));
     
     
     ////use acceleration structure
     //////aabb tree
-//    accel_structure=AABB_TREE;
-//    AABBTree* aabb_tree=new AABBTree(objects);
-//    aabb_trees.push_back(aabb_tree);
+    //    accel_structure=AABB_TREE;
+    //    AABBTree* aabb_tree=new AABBTree(objects);
+    //    aabb_trees.push_back(aabb_tree);
 
-}
-
-/* -------------------------- Rendering Code for Assignment 6 / Final ----------------------- */
-
-
-void ExampleScene::initializeFinalScene()
-{
-    rtClear();
-    
-    ////global settings
-    rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Assignment6Final.png");
-    rtBounceDepth(10);
-    rtShadowBias(1e-4f);
-    rtSampleRate(2);
-    
-    ////lighting
-    rtAmbientLight(STColor3f(.1f,.1f,.1f));
-    rtPointLight(STPoint3(15.f,10.f,15.f),STColor3f(.8f,.8f,.8f));
-    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
-    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
-    
-    ////Dice
-    Material mat_glass(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/0.f,/*refr*/STColor3f(.9f,.3f,.1f),/*sn*/1.3f);
-    rtMaterial(mat_glass);
-    rtPushMatrix();
-    rtTranslate(7.f,3.5f,8.f);
-    rtRotate(-90.f,0.f,0.f);
-    rtScale(.05f,.05f,.05f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
-    rtPopMatrix();
-    
-    rtMaterial(mat_glass);
-    rtPushMatrix();
-    rtTranslate(7.f,1.5f,8.f);
-    rtRotate(-90.f,05.f,0.f);
-    rtScale(.05f,.05f,.05f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/die.obj",true,false);
-    rtPopMatrix();
-    
-    ////Pokeball
-    Material mat_metal(/*ambient*/STColor3f(.6f,.4f,.3f),/*diffuse*/STColor3f(.6f,.4f,.3f),/*spec*/STColor3f(.3f,.2f,.2f),/*mirror*/STColor3f(.6f,.4f,.3f),/*shiness*/90.f);
-    rtMaterial(mat_metal);
-    rtPushMatrix();
-    rtTranslate(13.f,1.5f,10.f);
-    rtRotate(-90.f,15.f,0.f);
-    rtScale(.5f,.5f,.5f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
-    rtPopMatrix();
-    
-    
-    ////environment box
-    Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);
-    rtMaterial(mat_ground);
-    ////ground
-    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
-    
-    Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
-    rtMaterial(mat_wall);
-    ////ceil
-    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
-    ////background wall
-    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
-    //////forward wall
-    //addBackgroundWall(STPoint3(0.f,0.f,20.f),STVector2(20.f,20.f),false);
-    ////left wall
-    addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
-    ////right wall
-    addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
 }

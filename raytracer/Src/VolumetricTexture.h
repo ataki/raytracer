@@ -50,7 +50,7 @@ private:
             float s=(p.Component(d)-min_corner.Component(d))*one_over_dx[d];
             idx[d]=(int)floor(s);
             if(idx[d]>=counts[d]-1)idx[d]=counts[d]-2;//sort of hacky, but keeps idx from being out of bounds in Value function
-            frac[d]=s-(float)idx[d];
+        frac[d]=s-(float)idx[d];
             if(frac[d]>1.f)frac[d]=1.f;
         }
     }
