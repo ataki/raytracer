@@ -551,13 +551,9 @@ void ExampleScene::initializeSceneParticipatingMedia()
 	addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
 
     ////smoke participating medium
-<<<<<<< HEAD
     Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
     VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
-=======
-    Material participating_medium(STColor3f(1.f,1.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
-    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
->>>>>>> de08810b578aa1f41d56415b996d46691963512f
+
     rtVolumetricTexture(volume_tex);
     participating_medium.volumetric_texture=volume_tex;
     rtMaterial(participating_medium);
