@@ -607,15 +607,15 @@ void ExampleScene::initializeFinalScene()
     rtClear();
     
     ////global settings
-    rtCamera(/*eye*/STPoint3(10.f,6.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-    rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
+    rtCamera(/*eye*/STPoint3(10.f,13.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
+    rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
     rtBounceDepth(100);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
     
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
-    rtPointLight(STPoint3(15.f,10.f,15.f),STColor3f(.8f,.8f,.8f));
+    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
 //    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
 //    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
     rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
@@ -633,7 +633,7 @@ void ExampleScene::initializeFinalScene()
     rtTranslate(9.3f,6.5f,8.f);
     rtRotate(-90.f,5.f,0.f);
     rtScale(.45f,.45f,.45f);
-    rtTriangleMesh("../Custom_Tests/obj_files/indiv_obj/pokeball.obj",true,false);
+    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
     rtPopMatrix();
 
     //electric green pokeball
@@ -641,7 +641,7 @@ void ExampleScene::initializeFinalScene()
     rtTranslate(7.5f,1.5f,12.f);
     rtRotate(15.f,15.f,0.f);
     rtScale(1.1f,1.1f,1.1f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball5.obj",true,false);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
     rtPopMatrix();
 
     //red pokeball
@@ -658,8 +658,27 @@ void ExampleScene::initializeFinalScene()
     rtRotate(50.f,35.f,0.f);
 //    rtRotate(-90.f,5.f,0.f);
 //    rtScale(.5f,.5f,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/obj_files/indiv_obj/pokeball4.obj",true,false);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
     rtPopMatrix();
+    
+    // stone
+    rtPushMatrix();
+    rtTranslate(9.5f,0.f,0.f);
+    rtRotate(15.f,15.f,0.f);
+    rtScale(2.f,2.f,2.f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
+    rtPopMatrix();
+    
+    // sword
+    rtPushMatrix();
+    rtTranslate(9.5f,2.f,0.f);
+//    rtRotate(26.f,1.f,0.f);
+    rtScale(1.1f,1.1,1.1f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
+    rtPopMatrix();
+    
+    
+    
     
     //snow
 //    Material mat_metal(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(1.f,.5f,0.6f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/80.f);
@@ -668,7 +687,7 @@ void ExampleScene::initializeFinalScene()
 ////    rtTranslate(13.f,1.5f,8.f);
 ////    rtRotate(-90.f,15.f,0.f);
 //    rtScale(.8f,.8f,.8f);
-//    rtTriangleMesh("../Custom_Tests/obj_files/snow.obj",true,false);
+//    rtTriangleMesh("../Custom_Tests/scene1/obj_files/snow.obj",true,false);
 //    rtPopMatrix();
     
     //environment box
@@ -685,7 +704,7 @@ void ExampleScene::initializeFinalScene()
 //    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
     
     //background wall
-    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+//    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
     
     ////forward wall
     
