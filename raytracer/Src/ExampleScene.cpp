@@ -607,7 +607,7 @@ void ExampleScene::initializeFinalScene()
     rtClear();
     
     ////global settings
-    rtCamera(/*eye*/STPoint3(10.f,13.f,23.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
+    rtCamera(/*eye*/STPoint3(10.f,7.f,25.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
     rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
     rtBounceDepth(100);
     rtShadowBias(1e-4f);
@@ -617,62 +617,69 @@ void ExampleScene::initializeFinalScene()
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
 //    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-//    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
-    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
+    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
+//    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
 
-    //electric green pokeball
-    rtPushMatrix();
-    rtTranslate(2.7f,1.5f,10.f);
-    rtRotate(15.f,15.f,0.f);
-    rtScale(.5f,.5f,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
-    rtPopMatrix();
+//    //electric green pokeball
+//    rtPushMatrix();
+//    rtTranslate(2.7f,1.5f,13.f);
+//    rtRotate(15.f,15.f,0.f);
+//    rtScale(.5f,.5f,.5f);
+//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
+//    rtPopMatrix();
+//    
+//    //shiny blue center pokeball
+//    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
+//    rtMaterial(mat_glass);
+//    int tex_id;rtLoadTexture("../Standard_Tests/blue.png",tex_id);
+//    rtBindTexture(tex_id);
+//
+//    rtPushMatrix();
+//    rtTranslate(3.7f,3.7f,11.8f);
+//    rtRotate(-90.f,5.f,0.f);
+//    rtScale(.2f,.2f,.2f);
+//    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
+//    rtPopMatrix();
+//
+//    //red pokeball
+//    rtPushMatrix();
+//    rtTranslate(6.f,2.5f,12.5f);
+//    rtRotate(50.f,35.f,0.f);
+//    rtScale(.5f,.5f,.5f);
+//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
+//    rtPopMatrix();
     
-    //shiny blue center pokeball
-    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
-    rtMaterial(mat_glass);
-    int tex_id;rtLoadTexture("../Standard_Tests/blue.png",tex_id);
-    rtBindTexture(tex_id);
-
-    rtPushMatrix();
-    rtTranslate(3.7f,3.7f,8.8f);
-    rtRotate(-90.f,5.f,0.f);
-    rtScale(.2f,.2f,.2f);
-    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
-    rtPopMatrix();
-
-    //red pokeball
-    rtPushMatrix();
-    rtTranslate(6.f,2.5f,9.5f);
-    rtRotate(50.f,35.f,0.f);
-    rtScale(.5f,.5f,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
-    rtPopMatrix();
+//    // stone
+//    rtPushMatrix();
+//    rtTranslate(9.5f,0.f,5.f);
+//    rtRotate(15.f,15.f,0.f);
+//    rtScale(2.f,2.f,2.f);
+//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
+//    rtPopMatrix();
+//    
+//    // sword
+//    rtPushMatrix();
+//    rtTranslate(9.5f,2.f,5.f);
+////    rtRotate(26.f,1.f,0.f);
+//    rtScale(1.1f,1.1,1.1f);
+//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
+//    rtPopMatrix();
     
-    // stone
-    rtPushMatrix();
-    rtTranslate(9.5f,0.f,5.f);
-    rtRotate(15.f,15.f,0.f);
-    rtScale(2.f,2.f,2.f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
-    rtPopMatrix();
+//    // tree
+//    rtPushMatrix();
+//    rtTranslate(4.5f,2.f,7.f);
+//    //    rtRotate(26.f,1.f,0.f);
+//    rtScale(1.5f,1.5,1.5f);
+//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
+//    rtPopMatrix();
     
-    // sword
+    // temple
     rtPushMatrix();
-    rtTranslate(9.5f,2.f,5.f);
-//    rtRotate(26.f,1.f,0.f);
-    rtScale(1.1f,1.1,1.1f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
+    rtTranslate(20.f,0.f,-27.f);
+        rtRotate(0.f,-25.f,0.f);
+    rtScale(.5f,.5,.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple.obj",true,false);
     rtPopMatrix();
-    
-    // big tree
-    rtPushMatrix();
-    rtTranslate(4.5f,2.f,7.f);
-    //    rtRotate(26.f,1.f,0.f);
-    rtScale(1.1f,1.1,1.1f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
-    rtPopMatrix();
-    
     
     //snow
 //    Material mat_metal(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(1.f,.5f,0.6f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/80.f);
@@ -685,15 +692,18 @@ void ExampleScene::initializeFinalScene()
 //    rtPopMatrix();
     
     //environment box
-    Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);
-    rtMaterial(mat_ground);
-    //ground
-    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+//    Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);
+//    rtMaterial(mat_ground);
+//    //ground
+//    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
     
     
     
 //    Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
 //    rtMaterial(mat_wall);
+//    int background_tex_id = 0;rtLoadTexture("../Custom_Tests/scene2/images/starry_night.jpg",tex_id);
+//    rtBindTexture(background_tex_id);
+
 //    ////ceil
 //    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),false);
     
