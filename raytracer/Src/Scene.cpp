@@ -120,8 +120,16 @@ STColor3f Scene::TraceRay(const Ray &ray, int bounce) {
             STColor3f color = TraceRay(*refracted, bounce + 1);
             //calculate attenuation based on distance ray traveled through medium
             float atten = object->material.participatingMediaAttenuation(refracted->e, refracted->at(inter->t), *(object->aabb));
-            STColor3f atten_color(atten, atten, atten);
-            STColor3f result = color * atten_color;
+            STColor3f result = color;
+            if (atten > 0.10f) {
+                if (atten > 0.75f) {
+                    STColor3f temp(atten, atten * 0.5, 0.f);
+                    result *= temp;
+                } else {
+                    STColor3f temp1(1-atten, 0.0f, 0.0f);
+                    result *= temp1;
+                }
+            }
             delete refracted;
             delete reflected;
             return result;

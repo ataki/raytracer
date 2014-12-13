@@ -436,12 +436,12 @@ void ExampleScene::initializeSceneTexture()
 
 	////global settings
 	rtCamera(/*eye*/STPoint3(0.f,0.f,12.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(0.f,0.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-	rtOutput(/*width*/512,/*height*/512,/*path*/"../Standard_Tests/Texture.png");
+	rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/Texture.png");
 	rtBounceDepth(1);
 	rtUseShadow(true);
 	rtShadowBias(1e-4f);
 
-	int tex_id;rtLoadTexture("../Standard_Tests/stanford.png",tex_id);
+	int tex_id;rtLoadTexture("../Custom_Tests/scene2/textures/sky.jpg",tex_id);
 	////lighting
 	rtAmbientLight(STColor3f(.1f,.1f,.1f));
 	rtPointLight(/*location*/STPoint3(-3.f,-3.f,6.f),STColor3f(.8f,.8f,.8f));
@@ -509,7 +509,7 @@ void ExampleScene::initializeSceneParticipatingMedia()
 
 	////global settings
 	rtCamera(/*eye*/STPoint3(10.f,6.f,19.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-	rtOutput(/*width*/512,/*height*/512,/*path*/"../Standard_Tests/ParticipatingMedia.png");
+	rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/ParticipatingMedia.png");
 	rtBounceDepth(5);
 	//rtUseTransparentShadow(true);
     rtUseShadow(false);
@@ -552,7 +552,8 @@ void ExampleScene::initializeSceneParticipatingMedia()
 
     ////smoke participating medium
     Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
-    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
+//    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
+    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
 
     rtVolumetricTexture(volume_tex);
     participating_medium.volumetric_texture=volume_tex;
@@ -619,6 +620,11 @@ void ExampleScene::initializeFinalScene()
 //    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
     rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
+    
+    ///////////////////////////////////////
+    //// Objects
+    //// (some unused from last scene)
+    ///////////////////////////////////////
 
 //    //electric green pokeball
 //    rtPushMatrix();
@@ -673,30 +679,60 @@ void ExampleScene::initializeFinalScene()
 //    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
 //    rtPopMatrix();
     
-    // temple
+    
+    ////////////////////////////////////////
+    //// Temple, Without Backgrounds
+    ///////////////////////////////////////
+    
     rtPushMatrix();
     rtTranslate(20.f,0.f,-27.f);
-        rtRotate(0.f,-25.f,0.f);
+    rtRotate(0.f,-25.f,0.f);
     rtScale(.5f,.5,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple.obj",true,false);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple_no_ground.obj",true,false);
     rtPopMatrix();
     
-    //snow
-//    Material mat_metal(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(1.f,.5f,0.6f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/80.f);
-//    rtMaterial(mat_metal);
-//    rtPushMatrix();
-////    rtTranslate(13.f,1.5f,8.f);
-////    rtRotate(-90.f,15.f,0.f);
-//    rtScale(.8f,.8f,.8f);
-//    rtTriangleMesh("../Custom_Tests/scene1/obj_files/snow.obj",true,false);
-//    rtPopMatrix();
     
-    //environment box
-//    Material mat_ground(STColor3f(1.f,1.f,1.f),STColor3f(.8f,.8f,.8f),STColor3f(),STColor3f(),30.f);
-//    rtMaterial(mat_ground);
-//    //ground
-//    addGround(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
     
+    ///////////////////////////////////////
+    //// Water
+    ///////////////////////////////////////
+
+    Material mat_water(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
+    rtMaterial(mat_water);
+    rtPushMatrix();
+    rtTranslate(-50.f,-1.f,-55.f);
+    rtScale(70.5f,30.5,70.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/Ocean.obj", true, false);
+    rtPopMatrix();
+
+    
+    
+    ///////////////////////////////////////
+    //// Environment Box
+    ///////////////////////////////////////
+    
+//    int tex_id;
+//    rtLoadTexture("../Custom_Tests/scene2/textures/sky.jpg",tex_id);
+//    
+//    Material mat_tri(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/40.f);
+//    rtMaterial(mat_tri);
+//    rtBindTexture(tex_id);
+//
+//    addGround(STPoint3(0.f,0.f,0.f),STVector2(100.f,20.f),false);
+//    
+//    // background wall
+//    addBackgroundWall(STPoint3(0.f,0.f,0.f),STVector2(20.f,20.f),true);
+//    // foreground
+//    addBackgroundWall(STPoint3(0.f,0.f,30.f),STVector2(20.f,20.f),false);
+//    // left wall
+//    addWall(STPoint3(0.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),true);
+//    // right wall
+//    addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
+//    // ceiling
+//    addBackgroundWall(STPoint3(0.f,20.f,0.f),STVector2(20.f,20.f),false);
+//    
+//    rtUnbindTexture();
+
     
     
 //    Material mat_wall(STColor3f(1.f,1.f,1.f),STColor3f(.4f,.2f,.1f),STColor3f(),STColor3f(),30.f);
@@ -720,5 +756,9 @@ void ExampleScene::initializeFinalScene()
 //    
 //    ////ceiling
 //    addBackgroundWall(STPoint3(0.f,20.f,0.f),STVector2(20.f,20.f),false);
-
+    
+    // speed-up
+    accel_structure=AABB_TREE;
+    AABBTree* aabb_tree=new AABBTree(objects);
+    aabb_trees.push_back(aabb_tree);
 }
