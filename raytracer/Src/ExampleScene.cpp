@@ -659,7 +659,7 @@ void ExampleScene::initializeFinalScene()
     rtClear();
     
     ////global settings
-    rtCamera(/*eye*/STPoint3(10.f,7.f,15.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
+    rtCamera(/*eye*/STPoint3(10.f,7.f,35.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
     rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal_Cur.png");
     rtBounceDepth(100);
     rtShadowBias(1e-4f);
@@ -674,7 +674,7 @@ void ExampleScene::initializeFinalScene()
     
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
-//    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
     rtPointLight(STPoint3(20.f,0.f,-27.f),STColor3f(1.f,1.f,1.f));
 //    rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-1.f),STColor3f(.5f,.5f,.5f));
 //    rtPointLight(STPoint3(7.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
@@ -686,40 +686,11 @@ void ExampleScene::initializeFinalScene()
     //// Objects
     //// (some unused from last scene)
     ///////////////////////////////////////
-
-//    //electric green pokeball
-//    rtPushMatrix();
-//    rtTranslate(2.7f,1.5f,13.f);
-//    rtRotate(15.f,15.f,0.f);
-//    rtScale(.5f,.5f,.5f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
-//    rtPopMatrix();
-//    
-//    //shiny blue center pokeball
-//    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
-//    rtMaterial(mat_glass);
-//    int tex_id;rtLoadTexture("../Standard_Tests/blue.png",tex_id);
-//    rtBindTexture(tex_id);
-//
-//    rtPushMatrix();
-//    rtTranslate(3.7f,3.7f,11.8f);
-//    rtRotate(-90.f,5.f,0.f);
-//    rtScale(.2f,.2f,.2f);
-//    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
-//    rtPopMatrix();
-//
-//    //red pokeball
-//    rtPushMatrix();
-//    rtTranslate(6.f,2.5f,12.5f);
-//    rtRotate(50.f,35.f,0.f);
-//    rtScale(.5f,.5f,.5f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
-//    rtPopMatrix();
-    
+  
     // stone
     rtPushMatrix();
-    rtTranslate(3.3f,0.f,3.9f);
-    rtRotate(15.f,15.f,0.f);
+    rtTranslate(3.3f,-0.5f,4.f);
+//    rtRotate(15.f,15.f,0.f);
     rtScale(.8f,.8f,.8f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
     rtPopMatrix();
@@ -728,14 +699,14 @@ void ExampleScene::initializeFinalScene()
     rtPushMatrix();
     rtTranslate(3.3f,-0.5f,4.f);
 //    rtRotate(26.f,1.f,0.f);
-    rtScale(1.1f,1.1,1.1f);
+    rtScale(0.75f,0.75f,0.75f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
     rtPopMatrix();
     
     // tree
     rtPushMatrix();
     rtTranslate(-3.f,0.f,-7.f);
-    //    rtRotate(26.f,1.f,0.f);
+//    rtRotate(26.f,1.f,0.f);
     rtScale(1.5f,1.5,1.5f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
     rtPopMatrix();
@@ -746,9 +717,9 @@ void ExampleScene::initializeFinalScene()
     ///////////////////////////////////////
     
     rtPushMatrix();
-    rtTranslate(20.f,0.f,-27.f);
-//    rtRotate(0.f,-25.f,0.f);
-    rtScale(.5f,.5,.5f);
+    rtTranslate(30.f,0.f,-15.f);
+    rtRotate(0.f,-45.f,0.f);
+    rtScale(.6f,.6,.6f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple_no_ground.obj",true,false);
     rtPopMatrix();
     
@@ -761,7 +732,7 @@ void ExampleScene::initializeFinalScene()
     Material mat_water(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
     rtMaterial(mat_water);
     rtPushMatrix();
-    rtTranslate(-50.f,-1.f,-55.f);
+    rtTranslate(-50.f,-1.5f,-55.f);
     rtScale(70.5f,30.5,70.5f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/Ocean.obj", true, false);
     rtPopMatrix();
@@ -773,7 +744,7 @@ void ExampleScene::initializeFinalScene()
     ///////////////////////////////////////
     
     int tex_id;
-    rtLoadTexture("../Custom_Tests/scene2/images/sky-1.jpg",tex_id);
+    rtLoadTexture("../Custom_Tests/scene2/textures/sky-1.jpg",tex_id);
     
     Material mat_sky(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/40.f);
     rtMaterial(mat_sky);
