@@ -609,14 +609,14 @@ void ExampleScene::initializeFinalScene()
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,7.f,25.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
     rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
-    rtBounceDepth(100);
+//    rtBounceDepth(100);
     rtShadowBias(1e-4f);
-    rtSampleRate(2);
+//    rtSampleRate(2);
     
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
     rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(1.f,1.f,1.f));
-//    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+    rtPointLight(STPoint3(150.f,50.f,-500.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
 
@@ -653,7 +653,7 @@ void ExampleScene::initializeFinalScene()
     rtPushMatrix();
     rtTranslate(3.3f,0.f,3.9f);
     rtRotate(15.f,15.f,0.f);
-    rtScale(.8f,.8f,.8f);
+    rtScale(1.1f,1.1f,1.1f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
     rtPopMatrix();
     
@@ -667,7 +667,7 @@ void ExampleScene::initializeFinalScene()
     
     // tree
     rtPushMatrix();
-    rtTranslate(-3.f,0.f,-7.f);
+    rtTranslate(-10.f,-3.f,-12.f);
     //    rtRotate(26.f,1.f,0.f);
     rtScale(1.5f,1.5,1.5f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
