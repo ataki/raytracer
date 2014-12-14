@@ -609,9 +609,9 @@ void ExampleScene::initializeFinalScene()
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,7.f,25.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
     rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
-//    rtBounceDepth(100);
+    rtBounceDepth(100);
     rtShadowBias(1e-4f);
-//    rtSampleRate(2);
+    rtSampleRate(2);
     
     ////lighting
     rtAmbientLight(STColor3f(1.1f,1.1f,1.1f));
@@ -621,34 +621,47 @@ void ExampleScene::initializeFinalScene()
 //    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
 
-//    //electric green pokeball
-//    rtPushMatrix();
-//    rtTranslate(2.7f,1.5f,13.f);
-//    rtRotate(15.f,15.f,0.f);
-//    rtScale(.5f,.5f,.5f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
-//    rtPopMatrix();
-//    
-//    //shiny blue center pokeball
-//    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
-//    rtMaterial(mat_glass);
-//    int tex_id;rtLoadTexture("../Standard_Tests/blue.png",tex_id);
-//    rtBindTexture(tex_id);
-//
-//    rtPushMatrix();
-//    rtTranslate(3.7f,3.7f,11.8f);
-//    rtRotate(-90.f,5.f,0.f);
-//    rtScale(.2f,.2f,.2f);
-//    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
-//    rtPopMatrix();
-//
-//    //red pokeball
-//    rtPushMatrix();
-//    rtTranslate(6.f,2.5f,12.5f);
-//    rtRotate(50.f,35.f,0.f);
-//    rtScale(.5f,.5f,.5f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
-//    rtPopMatrix();
+    //electric green pokeball
+    rtPushMatrix();
+    rtTranslate(12.9f,2.2f,9.2f);
+    rtRotate(15.f,15.f,0.f);
+    rtScale(.5f,.5f,.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
+    rtPopMatrix();
+    
+    //shiny purple center pokeball
+    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
+    rtMaterial(mat_glass);
+    int tex_id;rtLoadTexture("../Custom_Tests/scene2/images/white.png",tex_id);
+    rtBindTexture(tex_id);
+    
+    rtPushMatrix();
+    rtTranslate(-6.f,2.6f,2.3f);
+    rtRotate(10.f,5.f,0.f);
+    rtScale(.2f,.2f,.2f);
+    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
+    rtPopMatrix();
+
+    //shiny blue center pokeball
+    Material mat_glass2(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
+    rtMaterial(mat_glass2);
+    int tex_id2;rtLoadTexture("../Custom_Tests/scene2/images/blue.png",tex_id2);
+    rtBindTexture(tex_id2);
+
+    rtPushMatrix();
+    rtTranslate(3.2f,3.5f,1.5f);
+    rtRotate(-90.f,5.f,0.f);
+    rtScale(.16f,.16f,.16f);
+    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
+    rtPopMatrix();
+
+    //red pokeball
+    rtPushMatrix();
+    rtTranslate(7.3f,2.5f,15.5f);
+    rtRotate(50.f,35.f,0.f);
+    rtScale(.45f,.45f,.45f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
+    rtPopMatrix();
     
     // stone
     rtPushMatrix();
