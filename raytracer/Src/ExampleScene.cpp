@@ -517,11 +517,11 @@ void ExampleScene::initializeSceneParticipatingMedia()
 
 	////lighting
 	rtAmbientLight(STColor3f(.1f,.1f,.1f));
-	rtPointLight(STPoint3(10.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-	rtPointLight(STPoint3(10.f,10.f,5.f),STColor3f(.2f,.2f,.2f));
-	rtPointLight(STPoint3(5.f,10.f,8.f),STColor3f(.2f,.2f,.2f));
-	rtPointLight(STPoint3(15.f,10.f,8.f),STColor3f(.2f,.2f,.2f));
-	rtPointLight(STPoint3(10.f,8.f,16.f),STColor3f(.2f,.2f,.2f));
+//	rtPointLight(STPoint3(10.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+//	rtPointLight(STPoint3(10.f,10.f,5.f),STColor3f(.2f,.2f,.2f));
+//	rtPointLight(STPoint3(5.f,10.f,8.f),STColor3f(.2f,.2f,.2f));
+//	rtPointLight(STPoint3(15.f,10.f,8.f),STColor3f(.2f,.2f,.2f));
+//	rtPointLight(STPoint3(10.f,8.f,16.f),STColor3f(.2f,.2f,.2f));
 	Material mat(STColor3f(.5f,.5f,.5f),STColor3f(.3f,.3f,.3f),STColor3f(),STColor3f(),10.f);
 
 	////environment box
@@ -549,16 +549,15 @@ void ExampleScene::initializeSceneParticipatingMedia()
 	rtMaterial(mat_right_wall);
 	addWall(STPoint3(20.f,0.f,0.f),STVector3(0.f,20.f,0.f),STVector3(0.f,0.f,20.f),false);
 
-    ////smoke participating medium
+    ////fire participating medium
     Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
-//    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/smoke_sphere.txt");
     VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
 
     rtVolumetricTexture(volume_tex);
     participating_medium.volumetric_texture=volume_tex;
     rtMaterial(participating_medium);
-    STPoint3 o(7.5f,1.f,4.f);
-    STPoint3 x=o;x.x+=5.f;
+    STPoint3 o(2.5f,1.f,4.f);
+    STPoint3 x=o;x.x+=10.f;
     STPoint3 y=o;y.y+=5.f;
     STPoint3 z=o;z.z+=5.f;
     rtBox(o,x,y,z);
@@ -659,7 +658,7 @@ void ExampleScene::initializeFinalScene()
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,7.f,35.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
-    rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal_TestWater.png");
+    rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
     rtBounceDepth(100);
     rtShadowBias(1e-4f);
     rtSampleRate(4);
@@ -672,7 +671,7 @@ void ExampleScene::initializeFinalScene()
     ///////////////////////////////////////
     
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
-//    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
+//    rtPointLight(STPoint3(7.f,5.f,10.f),STColor3f(.8f,.8f,.8f));
 //    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
 //    rtPointLight(STPoint3(20.f,0.f,-27.f),STColor3f(1.f,1.f,1.f));
 //    rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-2000.f),STColor3f(.5f,.5f,.5f));
@@ -683,6 +682,8 @@ void ExampleScene::initializeFinalScene()
 //    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
 //    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
     
+//    rtPointLight(STPoint3(3.3f,5.f,4.f), STColor3f(1.f,1.f,1.f));
+//    rtAreaLight(/*v1*/STPoint3(0.3f,5.f,0.f),/*v2*/STPoint3(6.3f,5.f,0.f),/*v3*/STPoint3(3.3f,5.f,8.f),STColor3f(.8f,.8f,.8f)); // Area L
     
     ///////////////////////////////////////
     //// Objects
@@ -739,6 +740,26 @@ void ExampleScene::initializeFinalScene()
     rtScale(70.5f,30.5,70.5f);
     rtTriangleMeshWithTextureAndCustomMaterial("../Custom_Tests/scene2/Ocean.obj", true, false, &mat_water);
     rtPopMatrix();
+    
+    
+    ///////////////////////////////////////
+    //// Fire with point light
+    ///////////////////////////////////////
+    
+    ////fire participating medium
+//    Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
+    Material participating_medium(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
+    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
+    
+    rtVolumetricTexture(volume_tex);
+    participating_medium.volumetric_texture=volume_tex;
+    rtMaterial(participating_medium);
+    STPoint3 o(3.3f-2.f,0.f,4.f-6.1f);
+    STPoint3 x=o;x.x+=3.f;
+    STPoint3 y=o;y.y+=10.f;
+    STPoint3 z=o;z.z+=6.f;
+    rtBox(o,x,y,z);
+    
 
     
     
@@ -771,6 +792,7 @@ void ExampleScene::initializeFinalScene()
     addWallTexture(wall_min_corner_1, wall_u, wall_v, false);
 
     rtUnbindTexture();
+    
 
     // speed-up
     accel_structure=AABB_TREE;

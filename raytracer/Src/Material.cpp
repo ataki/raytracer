@@ -42,7 +42,7 @@ float Material::participatingMediaAttenuation(const STPoint3& p1, const STPoint3
 {
     float step=0.05;//TODO: adjust this parameter for your scene
     float coef_density_to_alpha = .05f;//TODO: ajust this parameter for your scene
-    float coef_intensity_to_alpha = .05f;
+    float coef_intensity_to_alpha = 1.f;
     int min_intensity = 293.15;
     int max_intensity = 1273.15;
     STVector3 direction=(p2-p1);
