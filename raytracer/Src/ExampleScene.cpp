@@ -651,7 +651,7 @@ void ExampleScene::initializeFinalScene()
     
     // stone
     rtPushMatrix();
-    rtTranslate(3.3f,0.f,4.f);
+    rtTranslate(3.3f,0.f,3.9f);
     rtRotate(15.f,15.f,0.f);
     rtScale(.8f,.8f,.8f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
@@ -659,7 +659,7 @@ void ExampleScene::initializeFinalScene()
     
     // sword
     rtPushMatrix();
-    rtTranslate(3.3f,0.f,4.f);
+    rtTranslate(3.3f,-0.5f,4.f);
 //    rtRotate(26.f,1.f,0.f);
     rtScale(1.1f,1.1,1.1f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
@@ -667,7 +667,7 @@ void ExampleScene::initializeFinalScene()
     
     // tree
     rtPushMatrix();
-    rtTranslate(1.f,0.f,-7.f);
+    rtTranslate(-3.f,0.f,-7.f);
     //    rtRotate(26.f,1.f,0.f);
     rtScale(1.5f,1.5,1.5f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
