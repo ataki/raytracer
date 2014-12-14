@@ -47,8 +47,7 @@ void ExampleScene::initializeSceneBasicLightingAndShading()
 	rtAmbientLight(STColor3f(.1f,.1f,.1f));
 	rtPointLight(/*location*/STPoint3(4.f,4.f,8.f),STColor3f(.5f,.5f,.5f));
 	rtPointLight(/*location*/STPoint3(4.f,-2.f,8.f),STColor3f(.5f,.5f,.5f));
-	//rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-1.f),STColor3f(.5f,.5f,.5f));
-	//rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
+	rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
 
 	////objects:
 	////sphere
@@ -660,8 +659,8 @@ void ExampleScene::initializeFinalScene()
     
     ////global settings
     rtCamera(/*eye*/STPoint3(10.f,7.f,35.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
-    rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal_Cur.png");
-    rtBounceDepth(100);
+    rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal_Ambient_Area_Area1_PL2_BD3_SR2.png");
+    rtBounceDepth(3);
     rtShadowBias(1e-4f);
     rtSampleRate(2);
     
@@ -673,11 +672,14 @@ void ExampleScene::initializeFinalScene()
     ///////////////////////////////////////
     
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
-    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
-    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-    rtPointLight(STPoint3(20.f,0.f,-27.f),STColor3f(1.f,1.f,1.f));
-//    rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-1.f),STColor3f(.5f,.5f,.5f));
-//    rtPointLight(STPoint3(7.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
+//    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
+//    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
+//    rtPointLight(STPoint3(20.f,0.f,-27.f),STColor3f(1.f,1.f,1.f));
+//    rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-2000.f),STColor3f(.5f,.5f,.5f));
+    rtAreaLight(/*v1*/STPoint3(20.5f,10.f,-1075.f),/*v2*/STPoint3(40.5,10.f,-1075.f),/*v3*/STPoint3(40.5,10.f,-900.f),STColor3f(.8f,.8f,.8f)); // Area L
+    rtAreaLight(/*v1*/STPoint3(-10.f,3.f,-10.f),/*v2*/STPoint3(10.f,3.f,-10.f),/*v3*/STPoint3(10.f,23.f,-10.f),STColor3f(.8f,.8f,.8f)); // Area L1
+//    rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
+    rtPointLight(STPoint3(10.f,7.f,0.f),STColor3f(.2f,.2f,.2f));
 //    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
 //    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
     
@@ -720,7 +722,7 @@ void ExampleScene::initializeFinalScene()
     rtTranslate(30.f,0.f,-15.f);
     rtRotate(0.f,-45.f,0.f);
     rtScale(.6f,.6,.6f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple_no_ground.obj",true,false);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple.obj",true,false);
     rtPopMatrix();
     
     
@@ -729,10 +731,10 @@ void ExampleScene::initializeFinalScene()
     //// Water
     ///////////////////////////////////////
 
-    Material mat_water(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
+    Material mat_water(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(.5f,.5f,.5f),/*spec*/STColor3f(),/*mirror*/STColor3f(.5f,.5f,.5f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
     rtMaterial(mat_water);
     rtPushMatrix();
-    rtTranslate(-50.f,-1.5f,-55.f);
+    rtTranslate(-50.f,-2.f,-55.f);
     rtScale(70.5f,30.5,70.5f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/Ocean.obj", true, false);
     rtPopMatrix();
@@ -746,33 +748,26 @@ void ExampleScene::initializeFinalScene()
     int tex_id;
     rtLoadTexture("../Custom_Tests/scene2/textures/sky-1.jpg",tex_id);
     
-    Material mat_sky(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.2f,.2f,.2f),/*mirror*/STColor3f(0.f,0.f,0.f),/*shiness*/40.f);
+    Material mat_sky(/*ambient*/STColor3f(1.f,1.f,1.f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*specular*/STColor3f(.8f,.8f,.8f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/40.f);
     rtMaterial(mat_sky);
     rtBindTexture(tex_id);
 
     // no ground - ocean is ground
     
     // background wall - main sunset
-    STPoint3 bg_min_corner = STPoint3(-3000.f,-60.f,-2000.f);
-    STVector2 bg_size = STVector2(5500.f, 4000.f);
+    STPoint3 bg_min_corner = STPoint3(-5000.f,-60.f,-2000.f);
+    STPoint3 bg_min_corner_1 = STPoint3(-5000.f,-60.f,200.f);
+    STVector2 bg_size = STVector2(7500.f, 4000.f);
     rtRotate(-20.f, 0.f, 0.f);
-//    rtTriangle(min_corner_bg,
-//       STPoint3(min_corner_bg.x+size.x,min_corner_bg.y,min_corner_bg.z),
-//       STPoint3(min_corner_bg.x+size.x,min_corner_bg.y+size.y,min_corner_bg.z),
-//       STPoint2(0.f, 0.f),
-//       STPoint2(1.f, 0.f),
-//       STPoint2(1.f, 1.f)
-//    );
-    addBackgroundWallTexture(bg_min_corner, bg_size);
-//
-//    STPoint3 wall_min_corner = STPoint3(-6000.f,-60.f,-2000.f);
-//    STVector3 wall_u = STVector3(10500.f, 4000.f, 20.f);
-//    STVector3 wall_v = STVector3(10500.f, 4000.f, 20.f);
-    
-//    rtTriangle(/*v1*/STPoint3(-4.f,-4.f,0.f),/*v2*/STPoint3(4.f,-4.f,0.f),/*v3*/STPoint3(4.f,4.f,0.f),
-//               /*uv1*/STPoint2(0.f,0.f),/*uv2*/STPoint2(1.f,0.f),/*uv3*/STPoint2(1.f,1.f));
-//    rtTriangle(/*v1*/STPoint3(-4.f,-4.f,0.f),/*v2*/STPoint3(4.f,4.f,0.f),/*v3*/STPoint3(-4.f,4.f,0.f),
-//               /*uv1*/STPoint2(0.f,0.f),/*uv2*/STPoint2(1.f,1.f),/*uv3*/STPoint2(0.f,1.f));
+    addBackgroundWallTexture(bg_min_corner, bg_size, true);
+    addBackgroundWallTexture(bg_min_corner_1, bg_size, false);
+
+    STPoint3 wall_min_corner = STPoint3(-6000.f,-60.f,-2000.f);
+    STVector3 wall_u = STVector3(10500.f, 4000.f, 20.f);
+    STVector3 wall_v = STVector3(10500.f, 4000.f, 20.f);
+    STPoint3 wall_min_corner_1 = STPoint3(6000.f,-60.f,2000.f);
+    addWallTexture(wall_min_corner, wall_u, wall_v, true);
+    addWallTexture(wall_min_corner_1, wall_u, wall_v, false);
 
     rtUnbindTexture();
 
