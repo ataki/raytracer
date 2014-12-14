@@ -615,9 +615,9 @@ void ExampleScene::initializeFinalScene()
     
     ////lighting
     rtAmbientLight(STColor3f(.1f,.1f,.1f));
-    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(.8f,.8f,.8f));
+    rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
+//    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
 
 //    //electric green pokeball
@@ -649,35 +649,35 @@ void ExampleScene::initializeFinalScene()
 //    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
 //    rtPopMatrix();
     
-//    // stone
-//    rtPushMatrix();
-//    rtTranslate(9.5f,0.f,5.f);
-//    rtRotate(15.f,15.f,0.f);
-//    rtScale(2.f,2.f,2.f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
-//    rtPopMatrix();
-//    
-//    // sword
-//    rtPushMatrix();
-//    rtTranslate(9.5f,2.f,5.f);
-////    rtRotate(26.f,1.f,0.f);
-//    rtScale(1.1f,1.1,1.1f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
-//    rtPopMatrix();
+    // stone
+    rtPushMatrix();
+    rtTranslate(3.3f,0.f,4.f);
+    rtRotate(15.f,15.f,0.f);
+    rtScale(.8f,.8f,.8f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/stone.obj",true,false);
+    rtPopMatrix();
     
-//    // tree
-//    rtPushMatrix();
-//    rtTranslate(4.5f,2.f,7.f);
-//    //    rtRotate(26.f,1.f,0.f);
-//    rtScale(1.5f,1.5,1.5f);
-//    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
-//    rtPopMatrix();
+    // sword
+    rtPushMatrix();
+    rtTranslate(3.3f,0.f,4.f);
+//    rtRotate(26.f,1.f,0.f);
+    rtScale(1.1f,1.1,1.1f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
+    rtPopMatrix();
+    
+    // tree
+    rtPushMatrix();
+    rtTranslate(1.f,0.f,-7.f);
+    //    rtRotate(26.f,1.f,0.f);
+    rtScale(1.5f,1.5,1.5f);
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
+    rtPopMatrix();
     
     // temple
     rtPushMatrix();
-    rtTranslate(20.f,0.f,-27.f);
-        rtRotate(0.f,-25.f,0.f);
-    rtScale(.5f,.5,.5f);
+    rtTranslate(30.f,0.f,-15.f);
+        rtRotate(0.f,-45.f,0.f);
+    rtScale(.6f,.6,.6f);
     rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple.obj",true,false);
     rtPopMatrix();
     
