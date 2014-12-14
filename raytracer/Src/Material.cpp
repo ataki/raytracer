@@ -42,6 +42,9 @@ float Material::participatingMediaAttenuation(const STPoint3& p1, const STPoint3
 {
     float step=0.05;//TODO: adjust this parameter for your scene
     float coef_density_to_alpha = .05f;//TODO: ajust this parameter for your scene
+    float coef_intensity_to_alpha = .05f;
+    int min_intensity = 293.15;
+    int max_intensity = 1273.15;
     STVector3 direction=(p2-p1);
     direction.Normalize();
     STVector3 range(aabb.xmax - aabb.xmin, aabb.ymax - aabb.ymin, aabb.zmax - aabb.zmin);
@@ -52,11 +55,12 @@ float Material::participatingMediaAttenuation(const STPoint3& p1, const STPoint3
         STPoint3 pos=p1 + i*step*direction;
         STPoint3 normalized_pos = STPoint3((pos.x-aabb_min.x)/range.x, (pos.y-aabb_min.y)/range.y, (pos.z-aabb_min.z)/range.z);
         for(int d=0;d<3;d++){if(normalized_pos.Component(d)<0)normalized_pos.Component(d)=0.f;if(normalized_pos.Component(d)>1)normalized_pos.Component(d)=1.f-(1e-5);}
-        float density = volumetric_texture->Value(normalized_pos);
-        float sampled_alpha = 1.f - exp(-coef_density_to_alpha * density);
-
-        alpha=(1.f - sampled_alpha)*alpha + sampled_alpha;
+//        float density = volumetric_texture->Value(normalized_pos);
+//        float sampled_alpha = 1.f - exp(-coef_density_to_alpha * density);
+//        alpha=(1.f - sampled_alpha)*alpha + sampled_alpha;
+        float intensity = volumetric_texture->Value(normalized_pos);
+        alpha += (intensity - min_intensity) / (max_intensity - min_intensity) * coef_intensity_to_alpha;
     }
 
-    return 1-alpha;
+    return alpha;
 }

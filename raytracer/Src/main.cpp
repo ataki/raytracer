@@ -11,6 +11,8 @@ int main(int argc, const char * argv[])
 {
     ExampleScene *scene = new ExampleScene();
     scene->initializeFinalScene();
+//    scene->initializeSceneParticipatingMedia();
+//    scene->initializeSceneTexture();
 
     clock_t start, end;
     start=clock();

@@ -37,6 +37,10 @@ public:
 	void addGround(const STPoint3& min_corner,const STVector2& size,bool counterclockwise=true);
 	void addBackgroundWall(const STPoint3& min_corner,const STVector2& size,bool counterclockwise=true);
 	void addWall(const STPoint3& min_corner,const STVector3& u,const STVector3& v,bool counterclockwise=true);
+
+    void addGroundTexture(const STPoint3& min_corner,const STVector2& size,bool counterclockwise=true);
+    void addBackgroundWallTexture(const STPoint3& min_corner,const STVector2& size,bool counterclockwise=true);
+    void addWallTexture(const STPoint3& min_corner,const STVector3& u,const STVector3& v,bool counterclockwise=true);
 };
 
 #endif
