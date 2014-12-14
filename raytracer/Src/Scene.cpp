@@ -474,6 +474,17 @@ void Scene::rtTriangleMeshWithMaterialAndTexture(const std::string& file_name,co
     }
 }
 
+void Scene::rtTriangleMeshWithTextureAndCustomMaterial(const std::string& file_name,const bool& counter_clockwise, const bool& smoothed_normal, Material *mat)
+{
+    std::vector<STTriangleMesh*> meshes;
+    STTriangleMesh::LoadObj(meshes,file_name);
+    for(int i = 0; i < (int)meshes.size(); i++) {
+        STTriangleMesh* st_mesh=meshes[i];
+        int tex_index=-1;if(st_mesh->mSurfaceColorImg)rtLoadTexture(st_mesh->mSurfaceColorImg,tex_index);
+        objects.push_back(new SceneObject(new TriangleMesh(*meshes[i],counter_clockwise,smoothed_normal), mat, &matStack.back(), tex_index));
+    }
+}
+
 void Scene::rtAmbientLight(const STColor3f& col)
 {
 	lights.push_back(new AmbientLight(col));

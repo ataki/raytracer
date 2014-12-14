@@ -44,6 +44,7 @@ public:
     void rtGroupObjects(int num);
     void rtTriangleMesh(const std::string& file_name,const bool& counter_clockwise,const bool& smoothed_normal);    ////read geometry from the obj file, and load the geometry, the current material and current texture to ray tracer
     void rtTriangleMeshWithMaterialAndTexture(const std::string& file_name,const bool& counter_clockwise, const bool& smoothed_normal);    ////read geometry, material, and texture from the obj file and load them to ray tracer
+    void rtTriangleMeshWithTextureAndCustomMaterial(const std::string& file_name,const bool& counter_clockwise, const bool& smoothed_normal, Material *mat);
     void rtAmbientLight(const STColor3f& col);
     void rtPointLight(const STPoint3& loc, const STColor3f& col);
     void rtDirectionalLight(const STVector3& dir, const STColor3f& col);
