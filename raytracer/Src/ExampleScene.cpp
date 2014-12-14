@@ -614,9 +614,10 @@ void ExampleScene::initializeFinalScene()
 //    rtSampleRate(2);
     
     ////lighting
-    rtAmbientLight(STColor3f(.1f,.1f,.1f));
+    rtAmbientLight(STColor3f(1.1f,1.1f,1.1f));
     rtPointLight(STPoint3(7.f,10.f,25.f),STColor3f(1.f,1.f,1.f));
-    rtPointLight(STPoint3(150.f,50.f,-500.f),STColor3f(1.f,1.f,1.f));
+//    rtPointLight(STPoint3(150.f,500.f,-1500.f),STColor3f(1.f,1.f,1.f));
+//    rtPointLight(STPoint3(10.f,500.f,-1500.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(15.f,5.f,15.f),STColor3f(1.f,1.f,1.f));
 //    rtPointLight(STPoint3(2.5f,7.5f,20.f),STColor3f(.2f,.2f,.2f));
 
