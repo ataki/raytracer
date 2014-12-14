@@ -1124,7 +1124,7 @@ d 1.000000
 illum 1
 map_Kd ../images/marble4.jpg
 
-newmtl Material.010
+newmtl Material.009
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.640000 0.640000 0.640000
