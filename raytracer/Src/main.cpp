@@ -11,6 +11,7 @@ int main(int argc, const char * argv[])
 {
     ExampleScene *scene = new ExampleScene();
     scene->initializeFinalScene();
+//    scene->initializeSceneBasicLightingAndShading();
 //    scene->initializeSceneParticipatingMedia();
 //    scene->initializeSceneTexture();
 

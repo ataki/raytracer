@@ -6,7 +6,7 @@ void ExampleScene::initializeSceneBasicGeometry()
 
 	////global settings
 	rtCamera(/*eye*/STPoint3(0.f,0.f,10.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(0.f,0.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-	rtOutput(/*width*/512,/*height*/512,/*path*/"../Standard_Tests/BasicGeometry.png");
+	rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/BasicGeometry.png");
 	rtBounceDepth(1);
 	rtUseShadow(false);
 	rtShadowBias(1e-4f);
@@ -38,16 +38,16 @@ void ExampleScene::initializeSceneBasicLightingAndShading()
 
 	////global settings
 	rtCamera(/*eye*/STPoint3(0.f,0.f,10.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(0.f,0.f,0.f),/*fov*/45.f,/*aspect*/1.f);
-	rtOutput(/*width*/512,/*height*/512,/*path*/"../Standard_Tests/BasicLightingAndShading.png");
+	rtOutput(/*width*/512,/*height*/512,/*path*/"../Custom_Tests/BasicLightingAndShading.png");
 	rtBounceDepth(1);
 	rtShadowBias(1e-4f);
 	rtSampleRate(4);
 
 	////lighting:
-	rtAmbientLight(STColor3f(.1f,.1f,.1f));
-	rtPointLight(/*location*/STPoint3(4.f,4.f,8.f),STColor3f(.5f,.5f,.5f));
-	rtPointLight(/*location*/STPoint3(4.f,-2.f,8.f),STColor3f(.5f,.5f,.5f));
-	rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
+//	rtAmbientLight(STColor3f(.1f,.1f,.1f));
+//	rtPointLight(/*location*/STPoint3(4.f,4.f,8.f),STColor3f(.5f,.5f,.5f));
+//	rtPointLight(/*location*/STPoint3(4.f,-2.f,8.f),STColor3f(.5f,.5f,.5f));
+//	rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
 
 	////objects:
 	////sphere
@@ -623,16 +623,16 @@ void ExampleScene::addBackgroundWallTexture(const STPoint3& min_corner,const STV
     if(counterclockwise){
         rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),
                    STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
-        rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z),
-                   STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
+//        rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z),
+//                   STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f));
     }
     else{
         rtTriangle(min_corner,STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y,min_corner.z),
                    STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f)
         );
-        rtTriangle(min_corner,STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),
-                   STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f)
-        );
+//        rtTriangle(min_corner,STPoint3(min_corner.x,min_corner.y+size.y,min_corner.z),STPoint3(min_corner.x+size.x,min_corner.y+size.y,min_corner.z),
+//                   STPoint2(0.f, 0.f), STPoint2(1.f, 0.f), STPoint2(1.f, 1.f)
+//        );
     }
 }
 
@@ -657,11 +657,12 @@ void ExampleScene::initializeFinalScene()
     rtClear();
     
     ////global settings
-    rtCamera(/*eye*/STPoint3(10.f,7.f,35.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
+    rtCamera(/*eye*/STPoint3(10.f,7.f,25.f),/*up*/STVector3(0.f,1.f,0.f),/*lookat*/STPoint3(10.f,3.f,0.f),/*fov*/45.f,/*aspect*/1.7f);
     rtOutput(/*width*/910,/*height*/512,/*path*/"../Custom_Tests/AssignmentFinal.png");
-    rtBounceDepth(100);
+    rtBounceDepth(3);
     rtShadowBias(1e-4f);
-    rtSampleRate(4);
+    rtUseShadow(false);
+    rtSampleRate(6);
     
     ///////////////////////////////////////
     //// Lighting
@@ -669,64 +670,9 @@ void ExampleScene::initializeFinalScene()
     //// Name output files based on the
     //// mixture of lights from experiments
     ///////////////////////////////////////
-    
 
-    rtAmbientLight(STColor3f(.1f,.1f,.1f));
-//    rtPointLight(STPoint3(7.f,5.f,10.f),STColor3f(.8f,.8f,.8f));
-//    rtPointLight(STPoint3(5.f,10.f,15.f),STColor3f(.2f,.2f,.2f));
-//    rtPointLight(STPoint3(20.f,0.f,-27.f),STColor3f(1.f,1.f,1.f));
-//    rtDirectionalLight(/*direction*/STVector3(-1.f,-1.f,-2000.f),STColor3f(.5f,.5f,.5f));
-//    rtAreaLight(/*v1*/STPoint3(20.5f,10.f,-1075.f),/*v2*/STPoint3(40.5,10.f,-1075.f),/*v3*/STPoint3(40.5,10.f,-900.f),STColor3f(.8f,.8f,.8f)); // Area L
-    rtAreaLight(/*v1*/STPoint3(-10.f,3.f,-10.f),/*v2*/STPoint3(10.f,3.f,-10.f),/*v3*/STPoint3(10.f,23.f,-10.f),STColor3f(.8f,.8f,.8f)); // Area L1
-    rtAreaLight(/*v1*/STPoint3(1.5f,.25f,.75f),/*v2*/STPoint3(1.5f,-.25f,1.25f),/*v3*/STPoint3(1.5f,.25f,1.25f),STColor3f(.8f,.8f,.8f));
-    rtPointLight(STPoint3(10.f,7.f,0.f),STColor3f(.2f,.2f,.2f));
-//    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
-//    rtPointLight(STPoint3(15.f,10.f,-20.f),STColor3f(.2f,.2f,.2f));
-    
-//    rtPointLight(STPoint3(3.3f,5.f,4.f), STColor3f(1.f,1.f,1.f));
-//    rtAreaLight(/*v1*/STPoint3(0.3f,5.f,0.f),/*v2*/STPoint3(6.3f,5.f,0.f),/*v3*/STPoint3(3.3f,5.f,8.f),STColor3f(.8f,.8f,.8f)); // Area L
-
-    //electric green pokeball
-    rtPushMatrix();
-    rtTranslate(12.9f,2.2f,9.2f);
-    rtRotate(15.f,15.f,0.f);
-    rtScale(.5f,.5f,.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball5.obj",true,false);
-    rtPopMatrix();
-    
-    //shiny purple center pokeball
-    Material mat_glass(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
-    rtMaterial(mat_glass);
-    int tex_id;rtLoadTexture("../Custom_Tests/scene2/images/white.png",tex_id);
-    rtBindTexture(tex_id);
-    
-    rtPushMatrix();
-    rtTranslate(-6.f,2.6f,2.3f);
-    rtRotate(10.f,5.f,0.f);
-    rtScale(.2f,.2f,.2f);
-    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
-    rtPopMatrix();
-
-    //shiny blue center pokeball
-    Material mat_glass2(/*ambient*/STColor3f(0.f,0.3f,0.6f),/*diffuse*/STColor3f(1.f,1.f,1.f),/*spec*/STColor3f(0.f,0.f,0.f),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/70.f);
-    rtMaterial(mat_glass2);
-    int tex_id2;rtLoadTexture("../Custom_Tests/scene2/images/blue.png",tex_id2);
-    rtBindTexture(tex_id2);
-
-    rtPushMatrix();
-    rtTranslate(3.2f,3.5f,1.5f);
-    rtRotate(-90.f,5.f,0.f);
-    rtScale(.16f,.16f,.16f);
-    rtTriangleMesh("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball.obj",true,false);
-    rtPopMatrix();
-
-    //red pokeball
-    rtPushMatrix();
-    rtTranslate(7.3f,2.5f,15.5f);
-    rtRotate(50.f,35.f,0.f);
-    rtScale(.45f,.45f,.45f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene1/obj_files/indiv_obj/pokeball4.obj",true,false);
-    rtPopMatrix();
+    rtAmbientLight(STColor3f(.3f,.3f,.3f));
+    rtPointLight(STPoint3(5.3f,7.f,10.f), STColor3f(.9f,.9f,.9f));
     
     ///////////////////////////////////////
     //// Objects
@@ -743,68 +689,82 @@ void ExampleScene::initializeFinalScene()
     
     // sword
     rtPushMatrix();
+    Material mat_sword(/*ambient*/STColor3f(0.6f,.4f,.3f),
+                       /*diffuse*/STColor3f(1.f,1.f,1.f),
+                       /*spec*/STColor3f(.2f,.2f,.2f),
+                       /*mirror*/STColor3f(.6f,.4f,.3f),
+                       /*shiness*/90.f);
     rtTranslate(3.3f,-0.5f,4.f);
-//    rtRotate(26.f,1.f,0.f);
     rtScale(0.75f,0.75f,0.75f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/sword.obj",true,false);
-    rtPopMatrix();
-    
-    // tree
-    rtPushMatrix();
-    rtTranslate(-10.f,-3.f,-12.f);
-    //    rtRotate(26.f,1.f,0.f);
-    rtScale(1.5f,1.5,1.5f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/tree.obj",true,false);
+    rtTriangleMeshWithTextureAndCustomMaterial("../Custom_Tests/scene2/obj_files/sword.obj",true,false, &mat_sword);
     rtPopMatrix();
     
     
     ////////////////////////////////////////
-    //// Temple, Without Backgrounds
+    //// Temple, with flames as
+    //// participating media
     ///////////////////////////////////////
     
     rtPushMatrix();
     rtTranslate(30.f,0.f,-15.f);
     rtRotate(0.f,-45.f,0.f);
     rtScale(.6f,.6,.6f);
-    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/temple.obj",true,false);
-    rtPopMatrix();
+    rtTriangleMeshWithMaterialAndTexture("../Custom_Tests/scene2/obj_files/test2.obj",true,false);
+
     
+    ////fire participating medium
+    Material participating_medium(
+      /*ambient*/STColor3f(),
+      /*diffuse*/STColor3f(),
+      /*spec*/STColor3f(1.f,1.f,1.f),
+      /*mirror*/STColor3f(.1f,.1f,.1f),
+      /*shiness*/30.f,
+      /*refr*/STColor3f(.7f,.6f,.9f),
+      /*sn*/1.3f);
+    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
+    
+    rtVolumetricTexture(volume_tex);
+    participating_medium.volumetric_texture=volume_tex;
+    
+    float x_delta = -2.f;
+    float y_delta = 1.25f;
+    float z_delta = -3.85f;
+    
+    // left flame
+    rtMaterial(participating_medium);
+    STPoint3 o1(-3.8, 1.49, -0.18);
+    o1.x += x_delta;
+    o1.y += y_delta;
+    o1.z += z_delta;
+    STPoint3 x=o1;x.x+=3.f;
+    STPoint3 y=o1;y.y+=10.f;
+    STPoint3 z=o1;z.z+=6.f;
+    rtBox(o1,x,y,z);
+    
+    // right flame
+    STPoint3 o2(-19.4, 1.5, -0.08);
+    o2.x += x_delta;
+    o2.y += y_delta;
+    o2.z += z_delta;
+    STPoint3 x2=o2;x2.x+=3.f;
+    STPoint3 y2=o2;y2.y+=10.f;
+    STPoint3 z2=o2;z2.z+=6.f;
+    rtBox(o2,x2,y2,z2);
+    
+    rtPopMatrix();
     
     
     ///////////////////////////////////////
     //// Water
     ///////////////////////////////////////
 
-//    Material mat_water(/*ambient*/STColor3f(.5f,.5f,.5f),/*diffuse*/STColor3f(.5f,.5f,.5f),/*spec*/STColor3f(),/*mirror*/STColor3f(1.f,1.f,1.f),/*shiness*/20.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
-    Material mat_water(/*ambient*/STColor3f(.2f,.2f,.2f),/*diffuse*/STColor3f(),/*spec*/STColor3f(),/*mirror*/STColor3f(.8f,.8f,.8f), 40.f);
-//    rtMaterial(mat_water);
+    Material mat_water(/*ambient*/STColor3f(.3f,.3f,.3f),/*diffuse*/STColor3f(.1f, .1f, .1f),/*spec*/STColor3f(),/*mirror*/STColor3f(.7f,.7f,.7f), 40.f);
     rtPushMatrix();
-    rtTranslate(-50.f,-0.5f,-55.f);
-    rtScale(70.5f,30.5,70.5f);
-    rtTriangleMeshWithTextureAndCustomMaterial("../Custom_Tests/scene2/Ocean.obj", true, false, &mat_water);
+    rtTranslate(-45.f,-1.f,-45.f);
+    rtScale(27.5f,3.5,27.5f);
+    rtTriangleMeshWithTextureAndCustomMaterial("../Custom_Tests/scene2/Ocean-tile.obj", true, false, &mat_water);
     rtPopMatrix();
-    
-    
-    ///////////////////////////////////////
-    //// Fire with point light
-    ///////////////////////////////////////
-    
-    ////fire participating medium
-//    Material participating_medium(STColor3f(1.f,0.f,1.f),STColor3f(0.f,0.f,1.f),STColor3f(0.f,0.f,0.f),STColor3f(0.f,0.f,0.f),0.f);
-    Material participating_medium(/*ambient*/STColor3f(),/*diffuse*/STColor3f(),/*spec*/STColor3f(1.f,1.f,1.f),/*mirror*/STColor3f(.1f,.1f,.1f),/*shiness*/30.f,/*refr*/STColor3f(.7f,.6f,.9f),/*sn*/1.3f);
-    VolumetricTexture* volume_tex = new VolumetricTexture("../Standard_Tests/sim_grid.txt");
-    
-    rtVolumetricTexture(volume_tex);
-    participating_medium.volumetric_texture=volume_tex;
-    rtMaterial(participating_medium);
-    STPoint3 o(3.3f-2.f,0.f,4.f-6.1f);
-    STPoint3 x=o;x.x+=3.f;
-    STPoint3 y=o;y.y+=10.f;
-    STPoint3 z=o;z.z+=6.f;
-    rtBox(o,x,y,z);
-    
 
-    
     
     ///////////////////////////////////////
     //// Environment Box
@@ -820,23 +780,22 @@ void ExampleScene::initializeFinalScene()
     // no ground - ocean is ground
     
     // background wall - main sunset
-    STPoint3 bg_min_corner = STPoint3(-5000.f,-60.f,-2000.f);
-    STPoint3 bg_min_corner_1 = STPoint3(-5000.f,-60.f,200.f);
-    STVector2 bg_size = STVector2(7500.f, 4000.f);
+    STPoint3 bg_min_corner = STPoint3(-7500.f,-60.f,-3500.f);
+//    STPoint3 bg_min_corner_1 = STPoint3(-5000.f,-60.f,200.f);
+    STVector2 bg_size = STVector2(9500.f, 6000.f);
     rtRotate(-20.f, 0.f, 0.f);
     addBackgroundWallTexture(bg_min_corner, bg_size, true);
-    addBackgroundWallTexture(bg_min_corner_1, bg_size, false);
+//    addBackgroundWallTexture(bg_min_corner_1, bg_size, false);
 
-    STPoint3 wall_min_corner = STPoint3(-6000.f,-60.f,-2000.f);
-    STVector3 wall_u = STVector3(10500.f, 4000.f, 20.f);
-    STVector3 wall_v = STVector3(10500.f, 4000.f, 20.f);
-    STPoint3 wall_min_corner_1 = STPoint3(6000.f,-60.f,2000.f);
-    addWallTexture(wall_min_corner, wall_u, wall_v, true);
-    addWallTexture(wall_min_corner_1, wall_u, wall_v, false);
+//    STPoint3 wall_min_corner = STPoint3(-6000.f,-60.f,-2000.f);
+//    STVector3 wall_u = STVector3(10500.f, 4000.f, 20.f);
+//    STVector3 wall_v = STVector3(10500.f, 4000.f, 20.f);
+//    STPoint3 wall_min_corner_1 = STPoint3(6000.f,-60.f,2000.f);
+//    addWallTexture(wall_min_corner, wall_u, wall_v, true);
+//    addWallTexture(wall_min_corner_1, wall_u, wall_v, false);
 
     rtUnbindTexture();
     
-
     // speed-up
     accel_structure=AABB_TREE;
     AABBTree* aabb_tree=new AABBTree(objects);
